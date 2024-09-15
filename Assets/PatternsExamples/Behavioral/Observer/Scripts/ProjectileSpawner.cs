@@ -25,8 +25,13 @@ namespace PatternsExamples.Behavioral.Observer.Scripts
 
         private void TowerOnShoot(object sender, TowerShootEventArgs e)
         {
-            var projectile = Instantiate(_projectilePrefab, e.Position, Quaternion.identity);
-            projectile.Init(e.Direction, e.ProjectileSpeed);
+            SpawnProjectile(e.Position, e.Direction, e.ProjectileSpeed);
+        }
+
+        private void SpawnProjectile(Vector3 position, Vector3 direction, float speed)
+        {
+            var projectile = Instantiate(_projectilePrefab, position, Quaternion.identity);
+            projectile.Init(direction, speed);
         }
     }
 }

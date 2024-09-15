@@ -203,6 +203,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4780702633851897395, guid: 594b02a09582cd440a7740009f0a1ecd, type: 3}
+      propertyPath: _shootCooldown
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4780702633851897395, guid: 594b02a09582cd440a7740009f0a1ecd, type: 3}
       propertyPath: _projectileSpeed
       value: 2
       objectReference: {fileID: 0}
@@ -477,7 +481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4780702633851897395, guid: 594b02a09582cd440a7740009f0a1ecd, type: 3}
       propertyPath: _shootCooldown
-      value: 2
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 4780702633851897395, guid: 594b02a09582cd440a7740009f0a1ecd, type: 3}
       propertyPath: _projectileSpeed
@@ -503,6 +507,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7946c7bda47f57d4198e7a2b2a926700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1603374355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1603374357}
+  - component: {fileID: 1603374356}
+  m_Layer: 0
+  m_Name: CameraShaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1603374356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603374355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13fc98a23934ca4845ba0b8645cbea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 366285956}
+  _shakeAmount: 0.1
+  _observableTowers:
+  - {fileID: 407363751}
+  - {fileID: 106763137}
+  - {fileID: 625118412}
+--- !u!4 &1603374357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603374355}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786747724
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,7 +872,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4780702633851897395, guid: 594b02a09582cd440a7740009f0a1ecd, type: 3}
       propertyPath: _shootCooldown
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4780702633851897395, guid: 594b02a09582cd440a7740009f0a1ecd, type: 3}
       propertyPath: _projectileSpeed
@@ -843,6 +897,7 @@ SceneRoots:
   - {fileID: 33197539}
   - {fileID: 566734309}
   - {fileID: 399496346}
+  - {fileID: 1603374357}
   - {fileID: 7095283654933267462}
   - {fileID: 106763136}
   - {fileID: 625118411}
