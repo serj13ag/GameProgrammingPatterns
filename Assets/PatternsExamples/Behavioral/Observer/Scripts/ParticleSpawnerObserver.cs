@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace PatternsExamples.Behavioral.Observer.Scripts
 {
-    public class ProjectileSpawner : MonoBehaviour
+    public class ParticleSpawnerObserver : MonoBehaviour
     {
-        [SerializeField] private Projectile _projectilePrefab;
+        [SerializeField] private ParticleSystem _shootParticles;
         [SerializeField] private SubjectTower[] _observableTowers;
 
         private void OnEnable()
@@ -25,13 +25,12 @@ namespace PatternsExamples.Behavioral.Observer.Scripts
 
         private void TowerOnShoot(object sender, TowerShootEventArgs e)
         {
-            SpawnProjectile(e.Position, e.Direction, e.ProjectileSpeed);
+            SpawnParticle(e.Position);
         }
 
-        private void SpawnProjectile(Vector3 position, Vector3 direction, float speed)
+        private void SpawnParticle(Vector3 position)
         {
-            var projectile = Instantiate(_projectilePrefab, position, Quaternion.identity);
-            projectile.Init(direction, speed);
+            Instantiate(_shootParticles, position, Quaternion.identity);
         }
     }
 }

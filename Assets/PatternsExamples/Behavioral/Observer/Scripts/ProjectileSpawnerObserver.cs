@@ -2,18 +2,10 @@ using UnityEngine;
 
 namespace PatternsExamples.Behavioral.Observer.Scripts
 {
-    public class CameraShaker : MonoBehaviour
+    public class ProjectileSpawnerObserver : MonoBehaviour
     {
-        [SerializeField] private Camera _camera;
-        [SerializeField] private float _shakeAmount;
+        [SerializeField] private Projectile _projectilePrefab;
         [SerializeField] private SubjectTower[] _observableTowers;
-
-        private Vector3 _initialPosition;
-
-        private void Awake()
-        {
-            _initialPosition = _camera.transform.position;
-        }
 
         private void OnEnable()
         {
@@ -33,17 +25,13 @@ namespace PatternsExamples.Behavioral.Observer.Scripts
 
         private void TowerOnShoot(object sender, TowerShootEventArgs e)
         {
-            ShakeCamera();
+            SpawnProjectile(e.Position, e.Direction, e.ProjectileSpeed);
         }
 
-        private void ShakeCamera()
+        private void SpawnProjectile(Vector3 position, Vector3 direction, float speed)
         {
-            var shakeAmount = Random.Range(-_shakeAmount, _shakeAmount);
-
-            _camera.transform.position = new Vector3(
-                shakeAmount + _initialPosition.x,
-                shakeAmount + _initialPosition.y,
-                shakeAmount + _initialPosition.z);
+            var projectile = Instantiate(_projectilePrefab, position, Quaternion.identity);
+            projectile.Init(direction, speed);
         }
     }
 }
