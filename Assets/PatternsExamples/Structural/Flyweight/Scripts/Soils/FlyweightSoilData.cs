@@ -1,17 +1,17 @@
 using UnityEngine;
 
-namespace PatternsExamples.Structural.Flyweight.Scripts.Terrains
+namespace PatternsExamples.Structural.Flyweight.Scripts.Soils
 {
     /// <summary>
     /// Shared intrinsic data
     /// </summary>
-    public class FlyweightTerrainData
+    public class FlyweightSoilData
     {
         public int MovementCost { get; }
         public Material ColoringMaterial { get; }
         public ParticleSystem Particles { get; }
 
-        public FlyweightTerrainData(int movementCost, Material coloringMaterial, ParticleSystem particles)
+        public FlyweightSoilData(int movementCost, Material coloringMaterial, ParticleSystem particles)
         {
             MovementCost = movementCost;
             ColoringMaterial = coloringMaterial;

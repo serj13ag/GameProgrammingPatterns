@@ -253,7 +253,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 'WASD: Move player'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -430,13 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a28853e49a494ab158ebd728245ba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _terrainPrefab: {fileID: 9189143210050368629, guid: 9ce8819d86883db42a6d4774ca24efe7, type: 3}
-  _grassMaterial: {fileID: 2100000, guid: 3531cbf8f1c9ccb44a8ff64be58af66d, type: 2}
-  _mudMaterial: {fileID: 2100000, guid: a9c00acf3124a844b81245e8db9867b7, type: 2}
-  _sandMaterial: {fileID: 2100000, guid: 2f9d34098dfa1ee4c831bcbc89732e55, type: 2}
-  _grassParticles: {fileID: 7785280202647187181, guid: 92b48bf168315cc449ca7cf400ec89d0, type: 3}
-  _mudParticles: {fileID: 4261407387693347259, guid: c14801010acba1442a0ef582a8c04555, type: 3}
-  _sandParticles: {fileID: 7850852991623369344, guid: d44516f67826b2e488120c70d771b20b, type: 3}
+  _terrainFactory: {fileID: 1386775639}
 --- !u!1 &914247618
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +623,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1386775638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1386775640}
+  - component: {fileID: 1386775639}
+  m_Layer: 0
+  m_Name: TerrainFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1386775639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386775638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c0b4a0eba1b44deb3ea56f6c4ee94a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soilPrefab: {fileID: 9189143210050368629, guid: 9ce8819d86883db42a6d4774ca24efe7, type: 3}
+  _grassMaterial: {fileID: 2100000, guid: 3531cbf8f1c9ccb44a8ff64be58af66d, type: 2}
+  _mudMaterial: {fileID: 2100000, guid: a9c00acf3124a844b81245e8db9867b7, type: 2}
+  _sandMaterial: {fileID: 2100000, guid: 2f9d34098dfa1ee4c831bcbc89732e55, type: 2}
+  _grassParticles: {fileID: 7785280202647187181, guid: 92b48bf168315cc449ca7cf400ec89d0, type: 3}
+  _mudParticles: {fileID: 4261407387693347259, guid: c14801010acba1442a0ef582a8c04555, type: 3}
+  _sandParticles: {fileID: 7850852991623369344, guid: d44516f67826b2e488120c70d771b20b, type: 3}
+--- !u!4 &1386775640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386775638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2044899133
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,4 +714,5 @@ SceneRoots:
   - {fileID: 530885337}
   - {fileID: 2044899134}
   - {fileID: 558740091}
+  - {fileID: 1386775640}
   - {fileID: 914247622}

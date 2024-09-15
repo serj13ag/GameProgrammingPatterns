@@ -36,18 +36,18 @@ namespace PatternsExamples.Structural.Flyweight.Scripts
 
         private void Move(Vector3Int direction)
         {
-            if (_terrainGenerator.TryGetTerrain(_currentPosition, out var moveFromTerrain))
+            if (_terrainGenerator.TryGetSoil(_currentPosition, out var moveFromSoil))
             {
-                Debug.Log($"Movement cost: {moveFromTerrain.MovementCost}");
+                Debug.Log($"Movement cost: {moveFromSoil.MovementCost}");
             }
 
             UpdatePosition(_currentPosition + direction);
 
-            if (_terrainGenerator.TryGetTerrain(_currentPosition, out var moveToTerrain))
+            if (_terrainGenerator.TryGetSoil(_currentPosition, out var moveToSoil))
             {
-                _meshRenderer.material = moveToTerrain.ColoringMaterial;
+                _meshRenderer.material = moveToSoil.ColoringMaterial;
 
-                Instantiate(moveToTerrain.Particles, _currentPosition, Quaternion.identity);
+                Instantiate(moveToSoil.Particles, _currentPosition, Quaternion.identity);
             }
         }
 
