@@ -1,13 +1,7 @@
 using UnityEngine;
 
-namespace PatternsExamples.Behavioral.Command.Scripts
+namespace PatternsExamples.Behavioral.Command.Scripts.Commands
 {
-    public interface ICommand
-    {
-        void Execute();
-        void Undo();
-    }
-
     public class MoveActorCommand : ICommand
     {
         private readonly IMovableActor _movableActor;

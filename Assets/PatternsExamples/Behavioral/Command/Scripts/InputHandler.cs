@@ -1,17 +1,25 @@
+using PatternsExamples.Behavioral.Command.Scripts.Commands;
 using UnityEngine;
 
 namespace PatternsExamples.Behavioral.Command.Scripts
 {
     public abstract class InputHandler
     {
-        public static bool HasChangeActorInput()
-        {
-            return Input.GetKeyDown(KeyCode.F);
-        }
-
         public static bool HasUndoInput()
         {
             return Input.GetKeyDown(KeyCode.Z);
+        }
+
+        public static bool HasChangeControlledActorInput(ActorControlChanger actorControlChanger, out ICommand command)
+        {
+            command = null;
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                command = new ChangeControlledActorCommand(actorControlChanger);
+            }
+
+            return command != null;
         }
 
         public static bool HasMoveActorInput(IMovableActor actor, out ICommand command)
