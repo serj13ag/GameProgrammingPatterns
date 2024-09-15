@@ -12,7 +12,7 @@ namespace PatternsExamples.Behavioral.Command.Scripts
 
         public IMovableActor ControlledActor => _controlledActor;
 
-        private void Awake()
+        private void Start()
         {
             SetControlledActor(_movableActors[0]);
         }
@@ -27,7 +27,9 @@ namespace PatternsExamples.Behavioral.Command.Scripts
 
         public void SetControlledActor(IMovableActor movableActor)
         {
+            _controlledActor?.SetControl(false);
             _controlledActor = movableActor;
+            _controlledActor.SetControl(true);
         }
 
         public IMovableActor GetNextControlledActor()
