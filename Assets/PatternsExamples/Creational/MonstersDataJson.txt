@@ -1,0 +1,29 @@
+{
+  "MonsterModels": [
+    {
+      "Name": "goblin",
+      "MinHealth": 10,
+      "MaxHealth": 20,
+      "Resists": ["cold", "poison"],
+      "Weaknesses": ["fire", "light"]
+    },
+    {
+      "Name": "goblin_big",
+	  "PrototypeName": "goblin",
+      "MaxHealth": 50
+    },
+	{
+      "Name": "goblin_giant",
+	  "PrototypeName": "goblin",
+	  "MinHealth": 50,
+      "MaxHealth": 100
+    },
+	{
+      "Name": "elf",
+      "MinHealth": 5,
+      "MaxHealth": 10,
+      "Resists": ["fire", "water"],
+      "Weaknesses": ["poison"]
+    }
+  ]
+}
