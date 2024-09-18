@@ -39,7 +39,7 @@ namespace PatternsExamples.Behavioral.State.Scripts
 
         public void SetState(PlayerState newPlayerStateType)
         {
-            if (_currentPlayerState.Type == newPlayerStateType)
+            if (_currentPlayerState?.Type == newPlayerStateType)
             {
                 return;
             }

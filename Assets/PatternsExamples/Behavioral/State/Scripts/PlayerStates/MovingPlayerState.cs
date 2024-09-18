@@ -1,35 +1,21 @@
-using UnityEngine;
-
 namespace PatternsExamples.Behavioral.State.Scripts.PlayerStates
 {
-    public class MovingPlayerState : IPlayerState
+    public class MovingPlayerState : BaseMotionPlayerState
     {
-        private const float MinimumDistanceToReachTarget = 0.1f;
-
         private readonly Player _player;
-
         private float _timeTillGoRunning;
 
-        public PlayerState Type => PlayerState.Moving;
+        public override PlayerState Type => PlayerState.Moving;
 
-        public MovingPlayerState(Player player, float timeTillGoRunning)
+        public MovingPlayerState(Player player, float timeTillGoRunning) : base(player)
         {
             _player = player;
             _timeTillGoRunning = timeTillGoRunning;
         }
 
-        public void Update(float deltaTime)
+        public override void Update(float deltaTime)
         {
-            var playerPosition = _player.transform.position;
-
-            if (FarFromTarget(playerPosition))
-            {
-                MoveTowardsTarget(deltaTime, playerPosition);
-            }
-            else
-            {
-                _player.SetState(PlayerState.Standing);
-            }
+            base.Update(deltaTime);
 
             if (_timeTillGoRunning > 0f)
             {
@@ -41,14 +27,9 @@ namespace PatternsExamples.Behavioral.State.Scripts.PlayerStates
             }
         }
 
-        private void MoveTowardsTarget(float deltaTime, Vector3 playerPosition)
+        protected override float GetMotionSpeed()
         {
-            _player.transform.position = Vector3.MoveTowards(playerPosition, _player.MoveTarget, _player.MovingSpeed * deltaTime);
-        }
-
-        private bool FarFromTarget(Vector3 playerPosition)
-        {
-            return Vector3.Distance(playerPosition, _player.MoveTarget) > MinimumDistanceToReachTarget;
+            return _player.MovingSpeed;
         }
     }
 }
