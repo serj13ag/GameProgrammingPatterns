@@ -1,13 +1,13 @@
 namespace PatternsExamples.Behavioral.State.Scripts.PlayerStates
 {
-    public class MovingPlayerState : BaseMotionPlayerState
+    public class WalkMovingPlayerState : BaseMovingPlayerState
     {
         private readonly Player _player;
         private float _timeTillGoRunning;
 
-        public override PlayerState Type => PlayerState.Moving;
+        public override PlayerState Type => PlayerState.Walking;
 
-        public MovingPlayerState(Player player, float timeTillGoRunning) : base(player)
+        public WalkMovingPlayerState(Player player, float timeTillGoRunning) : base(player)
         {
             _player = player;
             _timeTillGoRunning = timeTillGoRunning;

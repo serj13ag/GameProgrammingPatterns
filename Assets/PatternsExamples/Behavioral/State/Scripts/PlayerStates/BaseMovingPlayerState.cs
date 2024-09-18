@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace PatternsExamples.Behavioral.State.Scripts.PlayerStates
 {
-    public abstract class BaseMotionPlayerState : IPlayerState
+    public abstract class BaseMovingPlayerState : IPlayerState
     {
         private const float MinimumDistanceToReachTarget = 0.1f;
 
@@ -10,7 +10,7 @@ namespace PatternsExamples.Behavioral.State.Scripts.PlayerStates
 
         public abstract PlayerState Type { get; }
 
-        protected BaseMotionPlayerState(Player player)
+        protected BaseMovingPlayerState(Player player)
         {
             _player = player;
         }

@@ -33,7 +33,7 @@ namespace PatternsExamples.Behavioral.State.Scripts
 
             if (_currentPlayerState.Type == PlayerState.Standing)
             {
-                SetState(PlayerState.Moving);
+                SetState(PlayerState.Walking);
             }
         }
 
@@ -47,8 +47,8 @@ namespace PatternsExamples.Behavioral.State.Scripts
             IPlayerState newPlayerState = newPlayerStateType switch
             {
                 PlayerState.Standing => new StandingState(this),
-                PlayerState.Moving => new MovingPlayerState(this, _timeTillGoRunning),
-                PlayerState.Running => new RunningState(this),
+                PlayerState.Walking => new WalkMovingPlayerState(this, _timeTillGoRunning),
+                PlayerState.Running => new RunMovingPlayerState(this),
                 _ => throw new ArgumentOutOfRangeException(nameof(newPlayerStateType), newPlayerStateType, null),
             };
 
