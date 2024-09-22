@@ -10,11 +10,18 @@ namespace PatternsExamples.Behavioral.Bytecode.Scripts
         public LuaScriptRunner()
         {
             Script.DefaultOptions.DebugPrint = Debug.Log;
+
+            UserData.RegisterProxyType<CharacterLuaProxy, Character>(r => new CharacterLuaProxy(r));
         }
 
         public Script GetScript()
         {
             return _luaScript;
+        }
+
+        public void RunScript(string script)
+        {
+            _luaScript.DoString(script);
         }
     }
 }

@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using MoonSharp.Interpreter;
 using Random = UnityEngine.Random;
 
 namespace PatternsExamples.Behavioral.Bytecode.Scripts
@@ -17,22 +14,33 @@ namespace PatternsExamples.Behavioral.Bytecode.Scripts
         [SerializeField] private string _eSpellScriptName;
         [SerializeField] private string _rSpellScriptName;
 
+        private Dictionary<KeyCode, string> _spellLuaScripts;
+
         private LuaScriptRunner _luaScriptRunner;
-        private Dictionary<KeyCode, string> _spellScripts;
+        private SpellCasterLuaModule _spellCasterLuaModule;
 
         private void Awake()
         {
             _luaScriptRunner = new LuaScriptRunner();
+            _spellCasterLuaModule = new SpellCasterLuaModule(this);
 
-            _spellScripts = new Dictionary<KeyCode, string>
+            _spellLuaScripts = new Dictionary<KeyCode, string>
             {
-                { KeyCode.Q, LoadScriptContents(_qSpellScriptName) },
-                { KeyCode.W, LoadScriptContents(_wSpellScriptName) },
-                { KeyCode.E, LoadScriptContents(_eSpellScriptName) },
-                { KeyCode.R, LoadScriptContents(_rSpellScriptName) },
+                { KeyCode.Q, LuaScriptLoader.LoadScriptContents(_qSpellScriptName) },
+                { KeyCode.W, LuaScriptLoader.LoadScriptContents(_wSpellScriptName) },
+                { KeyCode.E, LuaScriptLoader.LoadScriptContents(_eSpellScriptName) },
+                { KeyCode.R, LuaScriptLoader.LoadScriptContents(_rSpellScriptName) },
             };
+        }
 
-            SetupLuaVariables();
+        private void OnEnable()
+        {
+            _spellCasterLuaModule.SetupVariables(_luaScriptRunner.GetScript());
+        }
+
+        private void OnDisable()
+        {
+            _spellCasterLuaModule.CleanupVariables(_luaScriptRunner.GetScript());
         }
 
         private void Update()
@@ -55,48 +63,24 @@ namespace PatternsExamples.Behavioral.Bytecode.Scripts
             }
         }
 
-        private static string LoadScriptContents(string scriptName)
-        {
-            var path = Path.Combine(Application.dataPath, "PatternsExamples", "Behavioral", "Bytecode", scriptName + ".lua");
-            if (File.Exists(path))
-            {
-                Debug.Log("Loaded LUA Script: " + scriptName);
-                return File.ReadAllText(path);
-            }
-
-            Debug.LogError("Failed to find LUA script!");
-            throw new FileNotFoundException();
-        }
-
-        private void SetupLuaVariables()
-        {
-            var script = _luaScriptRunner.GetScript();
-
-            UserData.RegisterProxyType<CharacterLuaProxy, Character>(r => new CharacterLuaProxy(r));
-
-            script.Globals["GetPlayer"] = (Func<Character>)GetPlayer;
-            script.Globals["GetRandomEnemy"] = (Func<Character>)GetRandomEnemy;
-            script.Globals["GetEnemies"] = (Func<List<Character>>)GetEnemies;
-        }
-
-        private void ExecuteSpellScript(KeyCode keyCode)
-        {
-            _luaScriptRunner.GetScript().DoString(_spellScripts[keyCode]);
-        }
-
-        private List<Character> GetEnemies()
-        {
-            return _enemies;
-        }
-
-        private Character GetPlayer()
+        public Character GetPlayer()
         {
             return _player;
         }
 
-        private Character GetRandomEnemy()
+        public Character GetRandomEnemy()
         {
             return _enemies[Random.Range(0, _enemies.Count)];
+        }
+
+        public List<Character> GetEnemies()
+        {
+            return _enemies;
+        }
+
+        private void ExecuteSpellScript(KeyCode keyCode)
+        {
+            _luaScriptRunner.RunScript(_spellLuaScripts[keyCode]);
         }
     }
 }
